@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About{% endblock title %}
+
+{% block content %}
+
+<section class="about">
+    <div class="container about-content">
+        <h2>Skillmate</h2>
+        <p style="margin: 1rem 0;">Our mission is to empower individuals with the skills and knowledge they need to achieve their goals through a wide range of online courses and training programs. The platform is designed to meet the needs of learners of all levels, and help them succeed in advancing their careers or learning something new.</p>
+        <img src='{% static 'img/about-hero-img.png' %}'>
+    </div>
+</section>
+
+<section class="about-brands">
+    <div class="container brands-content">
+        <h2 style="font-size: 2.5rem; line-height: 2.5rem;">Trusted by leading brands</h2>
+        <div class="brands">
+            <div class="brand">
+                <img src='{% static 'img/openai.png' %}'>
+            </div>
+            <div class="brand">
+                <img src='{% static 'img/google.png' %}'>
+            </div>
+            <div class="brand">
+                <img src='{% static 'img/microsoft.png' %}'>
+            </div>
+            <div class="brand">
+                <img src='{% static 'img/notion.png' %}'>
+            </div>
+            <div class="brand">
+                <img src='{% static 'img/linkedin.png' %}'>
+            </div>
+            <div class="brand">
+                <img src='{% static 'img/github.png' %}'>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-text">
+    <div class="container about-skillmate">
+        <div>
+            <img src='{% static 'img/about-study.jpg' %}'>
+        </div>
+        <div>
+            <h2 style="font-size: 2.5rem; line-height: 2.5rem;;">Who we are?</h2>
+            <p style="margin-top: 1rem;">
+                SkillMate is an innovative online learning platform that offers a wide range of courses and training programs designed to help you achieve your professional goals.<br><br>
+
+                Whether you are looking to advance your career, start a new one, or just learn something new, SkillMate has got you covered. With our personalized and engaging learning experience, you can master new skills at your own pace and on your own schedule.<br><br>
+                
+                <a href="/signup" class="btn">Join skillmate today!</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="about-numbers">
+    <div class="container numbers-content">
+        <h2 style="font-size: 2.5rem; line-height: 2.5rem;">We are growing each year!</h2>
+        <div class="numbers-container">
+            <div class="students-count">
+                <h2>Students</h2>
+                <p>26500 +</p>
+            </div>
+            <div class="instructors-count">
+                <h2>Instructors</h2>
+                <p>26500 +</p>
+            </div>
+            <div class="courses-count">
+                <h2>Courses</h2>
+                <p>26500 +</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

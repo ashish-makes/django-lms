@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+<section class="hero-section">
+    <div class="hero-content container">
+        <div class="hero-text">
+            <h1>Transform Your Learning Experience with skillmate.</h1>
+            <p>Get Access to Thousands of Courses and Take Control of Your Professional Development Today.</p>
+            <div style="display: flex; column-gap: .5rem; margin-top: 2rem;" class="hero-cta-btn">
+                <a style="display: inline-flex; column-gap: .3rem;" class="btn" href="/signup">
+                    Join now!
+                    <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/arrow-right.svg' %}'>
+                </a>
+                <a style="display: inline-flex; column-gap: .3rem;" class="btn" href="/courses">
+                    Explore Courses
+                    <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/arrow-right.svg' %}'>
+                </a>
+            </div>
+        </div>
+        <div class="hero-img">
+            <img src='{% static 'img/hero-image.png' %}'>
+        </div>
+    </div>
+</section>
+
+<section class="home-course-categories">
+    <div class="container home-course-categories-content">
+        <h2>Find Your Passion</h2>
+        <p style="margin: 1rem 0;">Explore our diverse range of course categories and find the perfect course to fuel your passion and professional growth.</p>
+        <div class="course-categories">
+            <div class="category">
+                <h3>Development & Deployment</h3>
+                <p style="margin-top: 1rem;">Courses on Web Development, Software Development, Game Development, and other development skills.</p>
+                <a href="/courses/development">
+                    <span class="link"></span>
+                </a>
+            </div>
+
+            <div class="category">
+                <h3>Design & Creativity</h3>
+                <p style="margin-top: 1rem;">Courses on graphic design, web design, animation, video editing, photography, and other creative skills.</p>
+                <a href="/courses/design">
+                    <span class="link"></span>
+                </a>
+            </div>
+            
+            <div class="category">
+                <h3>Business & Entrepreneurship</h3>
+                <p style="margin-top: 1rem;">Courses on starting and growing a business, marketing, finance, project management, leadership, and other business-related skills.</p>
+                <a href="/courses/business">
+                    <span class="link"></span>
+                </a>
+            </div>
+            
+            <div class="category">
+                <h3>Data Science & Analytics</h3>
+                <p style="margin-top: 1rem;">Courses on data analysis, machine learning, artificial intelligence, statistics, and other data-related skills.</p>
+                <a href="/courses/datascience">
+                    <span class="link"></span>
+                </a>
+            </div>
+            
+            <div class="category">
+                <h3>Health & Wellness</h3>
+                <p style="margin-top: 1rem;">Courses on fitness, nutrition, mindfulness, meditation, and other health and wellness-related skills.</p>
+                <a href="/courses/health">
+                    <span class="link"></span>
+                </a>
+            </div>
+            
+            <div class="category">
+                <h3>Language & Communication</h3>
+                <p style="margin-top: 1rem;">Courses on foreign languages, communication skills, writing, translation, and other language-related skills.</p>
+                <a href="/courses/communication">
+                    <span class="link"></span>
+                </a>
+            </div>
+            
+            <div class="category">
+                <h3>Music & Entertainment</h3>
+                <p style="margin-top: 1rem;">Courses on music production, DJing, acting, screenwriting, and other entertainment-related skills.</p>
+                <a href="/courses/entertainment">
+                    <span class="link"></span>
+                </a>
+            </div>
+
+            <div class="category">
+                <h3>Science & Engineering</h3>
+                <p style="margin-top: 1rem;">Courses on physics, chemistry, biology, engineering, robotics, and other science and technology-related skills.</p>
+                <a href="/courses/science">
+                    <span class="link"></span>
+                </a>
+            </div>
+            
+            <div class="category">
+                <h3>Art & Design</h3>
+                <p style="margin-top: 1rem;">Courses on drawing, painting, sculpture, graphic design, and other creative skills.</p>
+                <a href="/courses/artdesign">
+                    <span class="link"></span>
+                </a>
+            </div>
+         
+        </div>
+    </div>
+</section>
+
+<section class="home-featured-courses">
+    <div class="container home-featured-courses-content">
+        <h2>Featured Courses</h2>
+        <p style="margin: 1rem 0;">Discover our top-rated courses taught by industry experts and start mastering new skills today.</p>
+        <div class="courses">
+            <div class="course">
+                <div class="course-thumbnail">
+                    <a href="#">
+                        <img src='{% static 'img/python-django.jpg' %}'>
+                    </a>
+                </div>
+                <div class="course-details">
+                    <a href="#"><h3>Master Python Web Development with Django</h3></a>
+                    <p style="display: inline-flex; column-gap: 1rem; justify-content: center; align-items: center;" class="instructor">
+                        <img class="instructor-img" src="https://api.dicebear.com/5.x/shapes/svg?seed=Ashish">
+                        Instructor: Ashish
+                    </p>
+                    <p class="course-desc">Learn how to build powerful web applications using Python and the Django framework in just 8 hours.</p>
+                    <p class="course-lvl-time">
+                        Beginner &middot; 8 hours
+                    </p>
+                    <a href="#" class="btn enroll-btn">Enroll now</a>
+                </div>
+            </div>
+            <div class="course">
+                <div class="course-thumbnail">
+                    <a href="#">
+                        <img src='{% static 'img/python-django.jpg' %}'>
+                    </a>
+                </div>
+                <div class="course-details">
+                    <a href="#"><h3>Master Python Web Development with Django</h3></a>
+                    <p style="display: inline-flex; column-gap: 1rem; justify-content: center; align-items: center;" class="instructor">
+                        <img class="instructor-img" src="https://api.dicebear.com/5.x/shapes/svg?seed=Ashish">
+                        Instructor: Ashish
+                    </p>
+                    <p class="course-desc">Learn how to build powerful web applications using Python and the Django framework in just 8 hours.</p>
+                    <p class="course-lvl-time">
+                        Beginner &middot; 8 hours
+                    </p>
+                    <a href="#" class="btn enroll-btn">Enroll now</a>
+                </div>
+            </div><div class="course">
+                <div class="course-thumbnail">
+                    <a href="#">
+                        <img src='{% static 'img/python-django.jpg' %}'>
+                    </a>
+                </div>
+                <div class="course-details">
+                    <a href="#"><h3>Master Python Web Development with Django</h3></a>
+                    <p style="display: inline-flex; column-gap: 1rem; justify-content: center; align-items: center;" class="instructor">
+                        <img class="instructor-img" src="https://api.dicebear.com/5.x/shapes/svg?seed=Ashish">
+                        Instructor: Ashish
+                    </p>
+                    <p class="course-desc">Learn how to build powerful web applications using Python and the Django framework in just 8 hours.</p>
+                    <p class="course-lvl-time">
+                        Beginner &middot; 8 hours
+                    </p>
+                    <a href="#" class="btn enroll-btn">Enroll now</a>
+                </div>
+            </div><div class="course">
+                <div class="course-thumbnail">
+                    <a href="#">
+                        <img src='{% static 'img/python-django.jpg' %}'>
+                    </a>
+                </div>
+                <div class="course-details">
+                    <a href="#"><h3>Master Python Web Development with Django</h3></a>
+                    <p style="display: inline-flex; column-gap: 1rem; justify-content: center; align-items: center;" class="instructor">
+                        <img class="instructor-img" src="https://api.dicebear.com/5.x/shapes/svg?seed=Ashish">
+                        Instructor: Ashish
+                    </p>
+                    <p class="course-desc">Learn how to build powerful web applications using Python and the Django framework in just 8 hours.</p>
+                    <p class="course-lvl-time">
+                        Beginner &middot; 8 hours
+                    </p>
+                    <a href="#" class="btn enroll-btn">Enroll now</a>
+                </div>
+            </div><div class="course">
+                <div class="course-thumbnail">
+                    <a href="#">
+                        <img src='{% static 'img/python-django.jpg' %}'>
+                    </a>
+                </div>
+                <div class="course-details">
+                    <a href="#"><h3>Master Python Web Development with Django</h3></a>
+                    <p style="display: inline-flex; column-gap: 1rem; justify-content: center; align-items: center;" class="instructor">
+                        <img class="instructor-img" src="https://api.dicebear.com/5.x/shapes/svg?seed=Ashish">
+                        Instructor: Ashish
+                    </p>
+                    <p class="course-desc">Learn how to build powerful web applications using Python and the Django framework in just 8 hours.</p>
+                    <p class="course-lvl-time">
+                        Beginner &middot; 8 hours
+                    </p>
+                    <a href="#" class="btn enroll-btn">Enroll now</a>
+                </div>
+            </div><div class="course">
+                <div class="course-thumbnail">
+                    <a href="#">
+                        <img src='{% static 'img/python-django.jpg' %}'>
+                    </a>
+                </div>
+                <div class="course-details">
+                    <a href="#"><h3>Master Python Web Development with Django</h3></a>
+                    <p style="display: inline-flex; column-gap: 1rem; justify-content: center; align-items: center;" class="instructor">
+                        <img class="instructor-img" src="https://api.dicebear.com/5.x/shapes/svg?seed=Ashish">
+                        Instructor: Ashish
+                    </p>
+                    <p class="course-desc">Learn how to build powerful web applications using Python and the Django framework in just 8 hours.</p>
+                    <p class="course-lvl-time">
+                        Beginner &middot; 8 hours
+                    </p>
+                    <a href="#" class="btn enroll-btn">Enroll now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="home-testimonials">
+    <div class="container home-testimonials-content">
+        <h2>Testimonials</h2>
+        <p style="margin: 1rem 0;">Hear from our satisfied students.</p>
+        <div class="testimonial-grid">
+        <img src='{% static 'img/testimonial-img.png' %}'>
+        <div class="testimonial-container">
+            <div id="testimonial-0" class="testimonial">
+                <img src="https://api.dicebear.com/5.x/shapes/svg?seed=JohnDoe">
+                <p style=" margin: .5rem 0;">"I've taken many online courses before, but this one stands out. The instructor was engaging and the content was well-organized. I learned so much and feel confident putting my new skills to use!"</p>
+                <h3>- John Doe</h3>
+                <p style="font-size: small;">Data Analyst</p>
+            </div>
+            <div id="testimonial-1" class="testimonial">
+                <img src="https://api.dicebear.com/5.x/shapes/svg?seed=Felix">
+                <p>"The course exceeded my expectations. It covered everything from the basics to advanced techniques, and the instructor was knowledgeable and patient. Highly recommend!"</p>
+                <h3>- Sarah K</h3>
+                <p style="font-size: small;">Data Analyst</p>
+            </div>
+            <!-- <div id="testimonial-2" class="testimonial">
+                <img src="https://api.dicebear.com/5.x/shapes/svg?seed=Felix">
+                <p style=" margin: .5rem 0;">"I've taken many online courses before, but this one stands out. The instructor was engaging and the content was well-organized. I learned so much and feel confident putting my new skills to use!"</p>
+                <h3>John Doe</h3>
+                <p style="font-size: small;">Data Analyst</p>
+            </div> -->
+        </div>
+        </div>
+    </div>
+</section>
+
+<section class="home-faq">
+    <div class="container home-faq-content">
+        <h2>Got questions? We've got answers.</h2>
+        <p style="margin: 1rem 0;">Check out our FAQ section to learn more about SkillMate</p>
+        <div class="faq-container">
+            <div class="faq">
+                <p class="question">What is SkillMate?</p>
+                <p class="answer">SkillMate is an online learning management system (LMS) that offers courses and training programs in a variety of subjects. It is designed to provide users with a personalized and engaging learning experience.</p>
+            </div>
+            <div class="faq">
+                <p class="question">Who can use SkillMate?</p>
+                <p class="answer">SkillMate is open to anyone who wants to learn and improve their skills. Our courses are designed for individuals, businesses, and organizations looking to develop their knowledge and skills.</p>
+            </div>
+            <div class="faq">
+                <p class="question">How do I sign up for SkillMate?</p>
+                <p class="answer">You can sign up for SkillMate by visiting our website and clicking on the "Sign Up" button. You will need to provide some basic information, such as your name and email address, to create an account.</p>
+            </div>
+            <div class="faq">
+                <p class="question">How much do SkillMate courses cost?</p>
+                <p class="answer">The cost of courses on SkillMate varies depending on the subject, the level of the course, and the instructor. Some courses are free, while others may cost several hundred dollars. You can view the price of a course on the course page before enrolling.</p>
+            </div>
+            <div class="faq">
+                <p class="question">What is the refund policy for SkillMate courses?</p>
+                <p class="answer">The refund policy for SkillMate courses varies depending on the course and the instructor. Some courses may offer a full refund within a certain timeframe, while others may not offer refunds at all. You can view the refund policy for a course on the course page before enrolling.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

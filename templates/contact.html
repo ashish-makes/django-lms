@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Contact{% endblock title %}
+
+{% block content %}
+
+<section class="contact">
+    <div class="container contact-content">
+        <h2>Get in touch.</h2>
+        <p style="margin: 1rem 0;" >We are always ready to hear your feedbacks & queries. Our average response time is 30 minutes.</p>
+        <div class="contact-container">
+            <div class="contact-img">
+                <img src='{% static 'img/contact-img.jpg' %}'>
+            </div>
+            <form class="contact-form" method="post" action="/contact/">
+                {% csrf_token %}
+                <div>
+                    <label for="firstname">Name</label>
+                    <input placeholder='John' type="text" id="firstname" name="firstname">
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input placeholder='example@gmail.com' type="text" id="email" name="email">
+                </div>
+                <div>
+                    <label for="phone">Phone</label>
+                    <input placeholder='xxx xxx xxxx' type="text" id="phone" name="phone">
+                </div>
+                <div>
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="your message..."></textarea>
+                </div>
+                <div>
+                    <button id="submit-button" type='submit'>Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

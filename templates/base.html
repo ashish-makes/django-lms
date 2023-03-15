@@ -1,0 +1,201 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title> {% block title %}{% endblock title %} - SkillMate</title>
+</head>
+<body>
+
+    <!-- Navbar -->
+
+    <header>
+        <nav class='container'>
+            <span>
+                <a href='/'>
+                    <div style='display: flex; justify-content: baseline; column-gap: .3rem'>
+                    <img src='{% static 'img/logo.svg' %}'>
+                    <span>skillmate</span>
+                    </div>
+                </a>
+            </span>
+            <ul>
+                <li><a href = '/'>Home</a></li>
+                <li><a href = '/about'>About</a></li>
+                <li><a href = '/contact'>Contact</a></li>
+                <li>
+                    <a style="display: flex;" class="desktop-categories-btn" href="javascript:void(0);">
+                        Categories
+                    </a>
+                </li>
+                <li>
+                    <a class='btn' href='/signup'>Signup</a>&nbsp
+                    <a class='btn' href='/login'>Login</a>
+                </li>
+                {% comment %} <li>
+                    <img style='cursor: pointer;' src='{% static 'img/moon.svg' %}'>
+                </li> {% endcomment %}
+            </ul>
+            <div class='mob-icons'>
+                <img class='menubtn' style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/menu.svg' %}'>
+                <img class='menuClosebtn' style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/close.svg' %}'>
+                {% comment %} <img style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/moon.svg' %}'> {% endcomment %}
+            </div>
+        </nav>
+    </header>
+
+    <!-- Desktop Categories -->
+
+    <div class="desktop-categories">
+        <ul>
+            <div>
+                <div style='border-bottom: 2px solid #f8f8ff; border-top: 2px solid #f8f8ff;'> 
+                    <a href = '#'><li>Development</li></a>
+                </div>
+                <a href = '#'><li>Web Development</li></a>
+                <a href = '#'><li>Game Development</li></a>
+                <a href = '#'><li>Software Development</li></a>
+            </div>
+            <div>
+                <div style='border-top: 2px solid #f8f8ff; border-bottom: 2px solid #f8f8ff;'> 
+                    <a href = '#'><li>Design</li></a>
+                </div>
+                <a href = '#'><li>Web Design</li></a>
+                <a href = '#'><li>Graphic Design</li></a>
+                <a href = '#'><li>Game Design</li></a>
+                <a href = '#'><li>Illustration</li></a>
+                <a href = '#'><li>Animation</li></a>
+            </div>
+            <div>
+                <div style='border-top: 2px solid #f8f8ff; border-bottom: 2px solid #f8f8ff;'> 
+                    <a href = '#'><li>Marketing</li></a>
+                </div>
+                <a href = '#'><li>Digital Marketing</li></a>
+                <a href = '#'><li>Content Marketing</li></a>
+                <a href = '#'><li>Affiliate Marketing</li></a>
+                <a href = '#'><li>Product Marketing</li></a>
+            </div>
+        </ul>
+    </div>
+
+    <!-- Mobile Menu -->
+
+    <div class='mob-menu'>
+        <ul>
+            <a href = '/'><li>Home</li></a>
+            <a href = '/about'><li>About</li></a>
+            <a href = '/contact'><li>Contact</li></a>
+            <a href="javascript:void(0);"><li style='display: flex; justify-content: baseline; border-bottom: 2px solid #f8f8ff;'>
+                <span>Categories</span>
+                <img class='categories-btn' style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/down.svg' %}'>
+                <img class='categories-close-btn' style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/up.svg' %}'>
+            </li></a>
+            <div style='border-bottom: 2px solid #f8f8ff;' class='mob-categories'>
+            <a href = '#'><li>Development</li></a>
+            <a href = '#'><li>Business</li></a>
+            <a href = '#'><li>Finance</li></a>
+            <a href = '#'><li>Design</li></a>
+            <a href = '#'><li>Marketing</li></a>
+            <a href = '#'><li>Lifestyle</li></a>
+            </div>
+            <div class='mob-menu-signup'>
+            <a href='/signup'><li style='text-align: center; margin: .4rem .5rem; padding: .2rem 0; background-color: #8710d8; color: #fff; border-radius: 4px; border-bottom: 2px solid #f8f8ff;'>Signup</li></a>
+            <a href='/login'><li style='text-align: center; margin: .4rem .5rem; padding: .2rem 0; background-color: #8710d8; color: #fff; border-radius: 4px; border-bottom: 2px solid #f8f8ff;'>Login</li></a>
+            </div>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <main>{% block content %}{% endblock content %}</main>
+
+    <a href='https://github.com/ashish-makes' target='_blank'><div class='ashish-credits'>
+        <img class="icons" style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/heart.svg' %}'>
+        <span style="margin-top: .1rem;" class='text'>A project by <span class='name' style='font-weight: 500;'>ashish<span></span>
+    </div></a>
+
+    <!-- Footer -->
+    <footer>
+        <div class='footer-container container'>
+        <div>
+            <span>
+                <a href='/'>
+                    <div style='display: flex; justify-content: baseline; column-gap: .3rem'>
+                    <img src='{% static 'img/logo.svg' %}'>
+                    <span>skillmate</span>
+                    </div>
+                </a>
+            </span>
+            <div style='margin-top: 1rem;' class='skillmate-foot-about'>
+                <p>
+                    Transform the way you learn with skillmate, featuring advanced tools and resources to help you achieve your goals and maximize your potential.
+                </p>
+            </div>
+            <div class='foot-socials'>
+                <a href ='#'><img style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/youtube.svg' %}'></a>
+                <a href ='#'><img style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/twitter.svg' %}'></a>
+                <a href ='#'><img style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/instagram.svg' %}'></a>
+                <a href ='#'><img style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/reddit.svg' %}'></a>
+                <a href ='#'><img style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/telegram.svg' %}'></a>
+            </div>
+        </div>
+        <div>
+            <span>
+                Company
+            </span>
+            <ul>
+                <li><a href = '/'>Home</a></li>
+                <li><a href = '/about'>About</a></li>
+                <li><a href = '/contact'>Contact</a></li>
+                <li><a href = '/contact'>Blog</a></li>
+                <li><a href = '/contact'>Privacy</a></li>
+                <li><a href = '/contact'>Affiliates</a></li>
+            </ul>
+        </div>
+        <div>
+            <span>
+                Courses
+            </span>
+            <ul>
+                <li><a href = '/about'>Web Development</a></li>
+                <li><a href = '/'>Animation</a></li>
+                <li><a href = '/contact'>Graphic Design</a></li>
+                <li><a href = '/contact'>Marketing</a></li>
+                <li><a href = '/contact'>Data Science</a></li>
+            </ul>
+        </div>
+        <div>
+            <span>
+                Application
+            </span>
+            <ul>
+                <li>
+                    <a href='#'>
+                        <button style='font-weight: 600;'>
+                            Download Android App
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a href='#'>
+                        <button style='padding: 0.5rem 2rem; font-weight: 600;'>
+                            Download iOS App
+                        </button>
+                    </a>
+                </li>
+            </ul>
+            <div style="margin-top: 1rem;" class="foot-credits">
+                <p>
+                    <p>Copyright &copy;<script>document.write(new Date().getFullYear())</script> <a style="font-weight: 600;" href="/">skillmate</a> All Rights Reserved</p>
+                </p>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
