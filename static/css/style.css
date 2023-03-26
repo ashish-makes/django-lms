@@ -310,7 +310,7 @@ footer span img {
 /* Homepage */
 
 .hero-section {
-    background: url("/static/img/hero-bg.png") 50% 0 no-repeat fixed, #f8f8ff;
+    background: url("/static/img/hero-bg.webp") 50% 0 no-repeat fixed, #f8f8ff;
 }
 
 .hero-content {
