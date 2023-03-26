@@ -1,0 +1,57 @@
+{% extends 'dashboard-base.html' %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+
+<sectiion class='dashboard'>
+    <h1>&#128075; Hi {{user}}</h1>
+
+    <div class='stats'>
+        <div class='stat'>
+            <p class='stat-heading'>Courses enrolled</p>
+            <p>{{num_courses_enrolled}}</p>
+        </div>
+        <div class='stat'>
+            <p class='stat-heading'>Courses uploaded</p>
+            <p>{{num_courses_uploaded}}</p>
+        </div>
+        {% comment %} <div class='stat'>
+            <p class='stat-heading'>Courses completed</p>
+            <p>100+</p>
+        </div> {% endcomment %}
+        <div class='stat'>
+            <p class='stat-heading'>Students</p>
+            <p>{{num_students}}</p>
+        </div>
+    </div>
+    <h2 style=''>Recent Enrollments</h2>
+    <div class='dashboard-table'>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Student</th>
+            <th>Enrollment Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for enrollment in enrollments %}
+          <tr>
+            <td>{{ enrollment.course_title }}</td>
+            <td>{{ enrollment.student_name }}</td>
+            <td>{{ enrollment.enrollment_date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>      
+    </div>
+</section>
+
+<style>
+    {% comment %} * {
+        outline: 1px solid green;
+    } {% endcomment %}
+</style>
+
+{% endblock content %}

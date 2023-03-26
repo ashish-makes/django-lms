@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+<section class="">
+    <div class="container">
+        <h2 style='font-size: 1.5rem;'>Courses</h2>
+        <div class="courses">
+            {% for course in courses %}
+<div class="course">
+    <div class="course-thumbnail">
+        <a href="{% url 'course_details' instructor=course.instructor slug=course.slug %}">
+            <img src='{{course.thumbnail.url}}'>
+        </a>
+    </div>
+    <div class="course-details">
+        <a href="{% url 'course_details' instructor=course.instructor slug=course.slug %}"><h3>{{ course.title|slice:":80" }}</h3></a>
+        <p style="display: inline-flex; column-gap: 1rem; justify-content: center; align-items: center;" class="instructor">
+            <img class="instructor-img" src="https://api.dicebear.com/5.x/shapes/svg?seed={{ course.instructor }}">
+            Instructor: {{ course.instructor }}
+        </p>
+        <p class="course-desc">{{ course.description|slice:":100" }}</p>
+        <p class="course-lvl-time">
+            {{ course.level }} &middot; {{ course.duration }} Hours
+        </p>
+        <a href="{% url 'course_details' instructor=course.instructor slug=course.slug %}" class="btn enroll-btn">Enroll now</a>
+    </div>
+</div>
+{% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,58 @@
+{% extends 'dashboard-base.html' %}
+
+{% load static %}
+
+{% block title %}Account{% endblock title %}
+
+{% block content %}
+<h1>Account</h1>
+<section>
+    <div class='profile'>
+        <div class='profile-content'>
+            <form class='profile-form' method='post' action='/dashboard/profile/'>
+                {% csrf_token %}
+                <div class="profile-image-container">
+                    {% if user.socialaccount_set.all.0.get_avatar_url %}
+                      <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Profile Image">
+                    {% else %}
+                      <img src="https://api.dicebear.com/5.x/shapes/svg?seed=Ashish" alt="Default Profile Image">
+                    {% endif %}
+                  </div>                  
+                <div>
+                    <label for="name">Name</label>
+                    {% if user.socialaccount_set.all.0.extra_data.name %}
+                    <input value='{{ user.socialaccount_set.all.0.extra_data.name }}' type="text" id="name" name="name">
+                    {% else %}
+                    <input value='{{ full_name }}' type="text" id="name" name="name">
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="username">Username</label>
+                    {% if user.socialaccount_set.all.0.extra_data.name %}
+                    <input value='{{ user.socialaccount_set.all.0.extra_data.name }}' type="text" id="username" name="username" disabled="disabled">
+                    {% else %}
+                    <input value='{{ username }}' type="text" id="username" name="username" disabled="disabled">
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    {% if user.socialaccount_set.all.0.extra_data.email %}
+                    <input value='{{ user.socialaccount_set.all.0.extra_data.email }}' type="text" id="email" name="email">
+                    {% else %}
+                    <input value='{{ email }}' type="text" id="email" name="email">
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="bio">Bio</label>
+                    <textarea type="text" id="bio" name="bio"></textarea>
+                </div>
+                <div>
+                    <button id="submit-button" type='submit'>Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

@@ -1,0 +1,169 @@
+{% extends 'dashboard-base.html' %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+
+<sectiion class='dashboard'>
+
+  <h1>Upload a new course</h1>
+
+  <form class='course-form' method="POST" enctype="multipart/form-data">
+  <h2>Course details</h2>
+    {% csrf_token %}
+    <div class="">
+      <label for="title">Course Title</label>
+      <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+    <div class="">
+      <label for="description">Course Description</label>
+      <textarea class="form-control" id="description" name="description" required></textarea>
+    </div>
+    <div>
+      <label for="requirements">Course Requirements</label>
+      <textarea class="form-control" id="requirements" name="requirements" required></textarea>
+    </div>
+    <div>
+      <label for="content">Course Content</label>
+      <textarea class="form-control" id="content" name="content" required></textarea>
+    </div>
+    <div>
+      <label for="category">Course Category</label>
+      <input type="text" class="form-control" id="category" name="category" required>
+    </div>
+    <div class="">
+      <label for="level">Course Level</label>
+      <select id="level" name="level">
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>      
+    </div>
+    <div class="">
+      <label for="duration">Course Duration</label>
+      <input type="text" class="form-control" id="duration" name="duration" required>
+    </div>
+    <div class="">
+      <label for="thumbnail">Course Thumbnail</label>
+      <input type="file" class="form-control-file" id="thumbnail" name="thumbnail" accept="image/*" required>
+    </div>
+    <div class="">
+      <label for="featured_video">Course Featured Video</label>
+      <input type="file" class="form-control-file" id="featured_video" name="featured_video" accept="video/*" required>
+    </div>
+    <div>
+      <label for="lesson_title">Lesson Title</label>
+      <input style='margin-bottom: 1rem' type="text" class="form-control" id="lesson_title" name="lesson_title" required>
+      <label for="lesson_video">Lesson Video</label>
+      <input type="file" class="form-control-file" id="lesson_title" name="lesson_video" accept="video/*" required>
+    </div>
+    <div style='display: flex; gap: 1rem; justify-content: space-between;'>
+      <div>
+        <label for="price">Price in USD</label>
+        <input type="text" class="form-control" id="price" name="price" required>
+      </div>
+      <div>
+        <label for="discount">Discount</label>
+        <input type="text" class="form-control" id="discount" name="discount" required>
+      </div>
+    </div>
+
+    {% comment %} <h2>Course lessons</h2> {% endcomment %}
+
+    {% comment %} <div id="lesson-fields">
+        <div style='margin: 1rem 0' class="">
+            <div>
+          <label for="lesson_title_1">Lesson Title:</label>
+          <input type="text" class="form-control" id="lesson_title_1" name="lesson_title_1" required>
+            </div>
+            <div>
+          <label for="lesson_video_1">Lesson Video:</label>
+          <input type="file" class="form-control-file" id="lesson_video_1" name="lesson_video_1" accept="video/*" required>
+            </div>
+        </div>
+    </div>
+      <button type="button" class="add-lesson" id="add-lesson">Add Lesson</button>
+      <br><br>
+      <button style='width: 100%' type="submit" class="upload-course">Upload Course</button> {% endcomment %}
+
+      {% comment %} <div class="lesson-inputs">
+        <div class="lesson">
+        <h4>Lesson 1</h4>
+        <br>
+        <label for="lesson_1_title">Lesson Title</label>
+        <input style='margin-bottom: 1rem' type="text" class="form-control" id="lesson_1_title" name="lesson_1_title" required>
+        <label for="lesson_1">Lesson Video</label>
+        <input type="file" class="form-control-file" id="lesson_1" name="lesson_1_video" accept="video/*" required>
+        <br><br>
+        <h4>Lesson 2</h4>
+        <br>
+        <label for="lesson_2_title">Lesson Title</label>
+        <input style='margin-bottom: 1rem' type="text" class="form-control" id="lesson_2_title" name="lesson_2_title">
+        <label for="lesson_2">Lesson Video</label>
+        <input type="file" class="form-control-file" id="lesson_2" name="lesson_2_video" accept="video/*">
+        <br><br>
+        <h4>Lesson 3</h4>
+        <br>
+        <label for="lesson_3_title">Lesson Title</label>
+        <input style='margin-bottom: 1rem' type="text" class="form-control" id="lesson_3_title" name="lesson_3_title">
+        <label for="lesson_3">Lesson Video</label>
+        <input type="file" class="form-control-file" id="lesson_3" name="lesson_3_video" accept="video/*">
+        <br><br>
+        <h4>Lesson 4</h4>
+        <br>
+        <label for="lesson_4_title">Lesson Title</label>
+        <input style='margin-bottom: 1rem' type="text" class="form-control" id="lesson_4_title" name="lesson_4_title">
+        <label for="lesson_4">Lesson Video</label>
+        <input type="file" class="form-control-file" id="lesson_4" name="lesson_4_video" accept="video/*">
+        <br><br>
+        <h4>Lesson 5</h4>
+        <br>
+        <label for="lesson_5_title">Lesson Title</label>
+        <input style='margin-bottom: 1rem' type="text" class="form-control" id="lesson_5_title" name="lesson_5_title">
+        <label for="lesson_5">Lesson Video</label>
+        <input type="file" class="form-control-file" id="lesson_5" name="lesson_5_video" accept="video/*">
+        <br><br>
+        <h4>Lesson 6</h4>
+        <br>
+        <label for="lesson_6_title">Lesson Title</label>
+        <input style='margin-bottom: 1rem' type="text" class="form-control" id="lesson_6_title" name="lesson_6_title">
+        <label for="lesson_6">Lesson Video</label>
+        <input type="file" class="form-control-file" id="lesson_6" name="lesson_6_video" accept="video/*">
+        <br><br>
+        <h4>Lesson 7</h4>
+        <br>
+        <label for="lesson_7_title">Lesson Title</label>
+        <input style='margin-bottom: 1rem' type="text" class="form-control" id="lesson_7_title" name="lesson_7_title">
+        <label for="lesson_7">Lesson Video</label>
+        <input type="file" class="form-control-file" id="lesson_7" name="lesson_7_video" accept="video/*">
+        <br><br>
+        <h4>Lesson 8</h4>
+        <br>
+        <label for="lesson_8_title">Lesson Title</label>
+        <input style='margin-bottom: 1rem' type="text" class="form-control" id="lesson_8_title" name="lesson_8_title">
+        <label for="lesson_8">Lesson Video</label>
+        <input type="file" class="form-control-file" id="lesson_8" name="lesson_8_video" accept="video/*">
+        <br><br>
+        <h4>Lesson 9</h4>
+        <br>
+        <label for="lesson_9_title">Lesson Title</label>
+        <input style='margin-bottom: 1rem' type="text" class="form-control" id="lesson_9_title" name="lesson_9_title">
+        <label for="lesson_9">Lesson Video</label>
+        <input type="file" class="form-control-file" id="lesson_9" name="lesson_9_video" accept="video/*">
+        <br><br>
+        <h4>Lesson 10</h4>
+        <br>
+        <label for="lesson_10_title">Lesson Title</label>
+        <input style='margin-bottom: 1rem' type="text" class="form-control" id="lesson_10_title" name="lesson_10_title">
+        <label for="lesson_10">Lesson Video</label>
+        <input type="file" class="form-control-file" id="lesson_10" name="lesson_10_video" accept="video/*">
+
+        </div>
+      </div> {% endcomment %}
+      <button style='width: 100%' type="submit" class="upload-course">Upload Course</button>
+
+  </form>
+
+</section>
+
+{% endblock content %}

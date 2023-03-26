@@ -1,0 +1,207 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title> {% block title %}{% endblock title %} - SkillMate</title>
+</head>
+<body>
+
+    <!-- Navbar -->
+
+    <header>
+        <nav style='margin-left: 1rem; margin-right: 1rem' class=''>
+            <span>
+                <a href='/'>
+                    <div style='display: flex; justify-content: baseline; column-gap: .3rem'>
+                    {% comment %} <img src='{% static 'img/logo.svg' %}'> {% endcomment %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6116 3.30203C11.8551 3.23273 12.1119 3.23267 12.3553 3.30176C12.8729 3.44863 13.3952 3.58485 13.9192 3.72153C16.38 4.36334 18.8793 5.01516 21.1028 6.82618L22.1267 7.66016C22.542 7.99845 22.7498 8.49918 22.75 9V16C22.75 16.4142 22.4142 16.75 22 16.75C21.5858 16.75 21.25 16.4142 21.25 16V11.0567L21.0871 11.1896C20.3166 11.8183 19.5128 12.3066 18.6888 12.7029C18.7282 12.794 18.75 12.8944 18.75 13V17.2939C18.75 18.4272 18.0548 19.4444 16.9989 19.8561L12.9989 21.4156C12.3565 21.666 11.6435 21.666 11.0011 21.4156L7.0011 19.8561C5.94522 19.4444 5.25 18.4272 5.25 17.2939V13C5.25 12.8918 5.27292 12.7889 5.31418 12.696C4.48383 12.2973 3.67373 11.8063 2.89724 11.1738L1.8733 10.3398C1.04264 9.66327 1.04221 8.33693 1.87215 7.65967L2.91292 6.81037C5.12037 5.00904 7.60193 4.36111 10.0445 3.72335C10.5697 3.58623 11.0931 3.44957 11.6116 3.30203ZM21.25 9.0006C21.25 8.91051 21.2136 8.85102 21.1794 8.8232L20.1555 7.98922C18 6.5 16.0794 5.84319 13.6399 5.20216C13.1035 5.06121 12.5519 4.91626 11.984 4.75559C11.4135 4.91742 10.8599 5.06306 10.3217 5.20465C7.9018 5.84128 5.79323 6.39601 3.86128 7.97253L2.8205 8.82184C2.78631 8.84973 2.74996 8.90931 2.75 8.9994C2.75004 9.08949 2.78643 9.14898 2.82058 9.1768L3.84453 10.0108C5.79285 11.5977 7.92065 12.1568 10.3601 12.7978C10.8965 12.9388 11.4481 13.0837 12.016 13.2444C12.5865 13.0826 13.14 12.937 13.6782 12.7954C16.0981 12.1587 18.2068 11.604 20.1387 10.0275L21.1795 9.17816C21.2137 9.15029 21.25 9.09054 21.25 9.0006ZM13.9555 14.2766C15.0553 13.9895 16.163 13.7003 17.25 13.3046V17.2939C17.25 17.8091 16.934 18.2714 16.454 18.4585L12.454 20.018C12.1621 20.1318 11.8379 20.1318 11.546 20.018L7.54596 18.4585C7.06601 18.2714 6.75 17.8091 6.75 17.2939V13.2961C7.84877 13.6963 8.96869 13.9884 10.0808 14.2785C10.6048 14.4151 11.1271 14.5514 11.6447 14.6982C11.8881 14.7673 12.145 14.7673 12.3884 14.698C12.9069 14.5504 13.4303 14.4138 13.9555 14.2766Z" fill="black"/>
+                    </svg>
+                    <span>skillmate</span>
+                    </div>
+                </a>
+            </span>
+            <ul style=''>
+                <li><a href = '/'>Home</a></li>
+                <li><a href = '/about'>About</a></li>
+                <li><a href = '/contact'>Contact</a></li>
+                <li>
+                    <a style="display: flex;" class="desktop-categories-btn" href="javascript:void(0);">
+                        Categories
+                    </a>
+                </li>
+                <li>
+                    {% if user.is_authenticated %}
+                    <a style='display: none;' class='btn' href='/signup'>Signup</a>&nbsp
+                    {% else %}
+                    <a class='btn' href='/accounts/signup/'>Signup</a>&nbsp
+                    {% endif %}
+                
+                    {% if user.is_authenticated %}
+                    <a class='btn' href='/accounts/logout/'>Logout</a>
+                    {% else %}
+                    <a class='btn' href='/accounts/login/'>Login</a>&nbsp
+                    {% endif %}
+
+                </li>
+                {% comment %} <li>
+                    <img style='cursor: pointer;' src='{% static 'img/moon.svg' %}'>
+                </li> {% endcomment %}
+            </ul>
+            <div class='mob-icons'>
+                <img class='menubtn' style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/menu.svg' %}'>
+                <img class='menuClosebtn' style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/close.svg' %}'>
+                {% comment %} <img style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/moon.svg' %}'> {% endcomment %}
+            </div>
+        </nav>
+    </header>
+
+    <!-- Desktop Categories -->
+
+    <div style='right: 3rem;' class="desktop-categories">
+        <ul>
+            <div>
+                <div style='border-bottom: 2px solid #f8f8ff; border-top: 2px solid #f8f8ff;'> 
+                    <a href = '#'><li>Development</li></a>
+                </div>
+                <a href = '#'><li>Web Development</li></a>
+                <a href = '#'><li>Game Development</li></a>
+                <a href = '#'><li>Software Development</li></a>
+            </div>
+            <div>
+                <div style='border-top: 2px solid #f8f8ff; border-bottom: 2px solid #f8f8ff;'> 
+                    <a href = '#'><li>Design</li></a>
+                </div>
+                <a href = '#'><li>Web Design</li></a>
+                <a href = '#'><li>Graphic Design</li></a>
+                <a href = '#'><li>Game Design</li></a>
+                <a href = '#'><li>Illustration</li></a>
+                <a href = '#'><li>Animation</li></a>
+            </div>
+            <div>
+                <div style='border-top: 2px solid #f8f8ff; border-bottom: 2px solid #f8f8ff;'> 
+                    <a href = '#'><li>Marketing</li></a>
+                </div>
+                <a href = '#'><li>Digital Marketing</li></a>
+                <a href = '#'><li>Content Marketing</li></a>
+                <a href = '#'><li>Affiliate Marketing</li></a>
+                <a href = '#'><li>Product Marketing</li></a>
+            </div>
+        </ul>
+    </div>
+
+    <!-- Mobile Menu -->
+
+    <div class='mob-menu'>
+        <ul>
+            <a href = '/'><li>Home</li></a>
+            <a href = '/about'><li>About</li></a>
+            <a href = '/contact'><li>Contact</li></a>
+            <a href="javascript:void(0);"><li style='display: flex; justify-content: baseline; border-bottom: 2px solid #f8f8ff;'>
+                <span>Categories</span>
+                <img class='categories-btn' style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/down.svg' %}'>
+                <img class='categories-close-btn' style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/up.svg' %}'>
+            </li></a>
+            <div style='border-bottom: 2px solid #f8f8ff;' class='mob-categories'>
+            <a href = '#'><li>Development</li></a>
+            <a href = '#'><li>Business</li></a>
+            <a href = '#'><li>Finance</li></a>
+            <a href = '#'><li>Design</li></a>
+            <a href = '#'><li>Marketing</li></a>
+            <a href = '#'><li>Lifestyle</li></a>
+            </div>
+            <div class='mob-menu-signup'>
+                {% if user.is_authenticated %}
+                <a href='/accounts/signup/'><li style='display: none; text-align: center; margin: .4rem .5rem; padding: .2rem 0; background-color: #8710d8; color: #fff; border-radius: 4px; border-bottom: 2px solid #f8f8ff;'>Signup</li></a>
+                {% else %}
+                <a href='/accounts/signup'><li style='text-align: center; margin: .4rem .5rem; padding: .2rem 0; background-color: #8710d8; color: #fff; border-radius: 4px; border-bottom: 2px solid #f8f8ff;'>Signup</li></a>
+                {% endif %}
+                
+                {% if user.is_authenticated %}
+                <a href='/accounts/logout'><li style='text-align: center; margin: .4rem .5rem; padding: .2rem 0; background-color: #8710d8; color: #fff; border-radius: 4px; border-bottom: 2px solid #f8f8ff;'>Logout</li></a>
+                {% else %}
+                <a href='/accounts/login'><li style='text-align: center; margin: .4rem .5rem; padding: .2rem 0; background-color: #8710d8; color: #fff; border-radius: 4px; border-bottom: 2px solid #f8f8ff;'>Login</li></a>
+                {% endif %}
+            </div>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <main>
+        <div class="profile-container">
+          <div class="sidebar">
+            <h2>{{user}}</h2>
+            <ul>
+              <a href="/dashboard/home">
+                <li style='display: flex; column-gap: .5rem; align-items: center;'>
+                {% comment %} <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/home.svg' %}'> {% endcomment %}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5578 5.53423C12.6873 4.69887 11.3127 4.69887 10.4422 5.53423L5.81574 9.97357C5.70239 10.0823 5.62614 10.224 5.5978 10.3785C5.04367 13.4004 5.00277 16.494 5.47681 19.5295L5.58933 20.25H8.56579V14.0387C8.56579 13.6244 8.90158 13.2887 9.31579 13.2887H14.6842C15.0984 13.2887 15.4342 13.6244 15.4342 14.0387V20.25H18.4107L18.5232 19.5295C18.9972 16.494 18.9563 13.4004 18.4022 10.3785C18.3739 10.224 18.2976 10.0823 18.1843 9.97357L13.5578 5.53423ZM9.40363 4.45191C10.8546 3.05965 13.1454 3.05965 14.5964 4.45191L19.2228 8.89125C19.5634 9.21804 19.7925 9.64373 19.8776 10.108C20.4621 13.2956 20.5053 16.559 20.0052 19.7609L19.8245 20.9184C19.7497 21.3971 19.3374 21.75 18.8529 21.75H14.6842C14.27 21.75 13.9342 21.4142 13.9342 21V14.7887H10.0658V21C10.0658 21.4142 9.73 21.75 9.31579 21.75H5.14706C4.66258 21.75 4.25029 21.3971 4.17554 20.9184L3.99478 19.7609C3.49473 16.559 3.53788 13.2956 4.12241 10.108C4.20754 9.64373 4.43662 9.21804 4.77719 8.89125L9.40363 4.45191Z" fill="white"/>
+                </svg>                    
+                    Dashboard
+                </li></a>
+              <a href="/dashboard/courses-enrolled">
+                <li style='display: flex; column-gap: .5rem; align-items: center;'>
+                    {% comment %} <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/book-mark.svg' %}'> {% endcomment %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.75 8C3.75 5.37665 5.87665 3.25 8.5 3.25H18.5C19.4665 3.25 20.25 4.0335 20.25 5V20C20.25 20.9665 19.4665 21.75 18.5 21.75H7.5C5.42893 21.75 3.75 20.0711 3.75 18V8ZM18.75 5V14.25H7.5C6.6558 14.25 5.87675 14.529 5.25 14.9997V8C5.25 6.20507 6.70507 4.75 8.5 4.75H11.7079C11.4446 6.73154 11.4683 8.74229 11.7794 10.72L11.8418 11.1166C11.8865 11.4006 12.0896 11.6341 12.3648 11.7176C12.6399 11.8012 12.9385 11.7201 13.1336 11.5089L14.5 10.0297L15.8664 11.5089C16.0615 11.7201 16.3601 11.8012 16.6353 11.7176C16.9104 11.6341 17.1135 11.4006 17.1582 11.1166L17.2206 10.72C17.5318 8.74228 17.5554 6.73154 17.2921 4.75H18.5C18.6381 4.75 18.75 4.86193 18.75 5ZM15.7779 4.75H13.2221C13.005 6.26418 12.9688 7.79819 13.1139 9.31967L13.7654 8.61431C14.1614 8.1857 14.8386 8.1857 15.2346 8.61431L15.8861 9.31967C16.0312 7.79819 15.995 6.26418 15.7779 4.75ZM7.5 15.75H18.75V20C18.75 20.1381 18.6381 20.25 18.5 20.25H7.5C6.25736 20.25 5.25 19.2426 5.25 18C5.25 16.7574 6.25736 15.75 7.5 15.75Z" fill="white"/>
+                    </svg>
+                    Courses Enrolled
+                </li></a>
+              <a href="/dashboard/courses-uploaded">
+                <li style='display: flex; column-gap: .5rem; align-items: center;'>
+                    {% comment %} <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/folder-open.svg' %}'> {% endcomment %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M20.3613 18.5795C19.9557 18.97 19.4179 19.2212 18.8253 19.2636L17.1874 19.3808C13.7335 19.6279 10.2665 19.6279 6.81261 19.3808L5.2986 19.2725C4.10258 19.1869 3.11607 18.3027 2.90055 17.1232C2.46388 14.7333 2.38913 12.2913 2.67879 9.87915L2.95127 7.61004C3.11298 6.26343 4.25538 5.25 5.61167 5.25H7.90323C9.02099 5.25 9.95226 6.04846 10.1578 7.10612L18.4722 7.10612C19.7786 7.10612 20.8913 8.05533 21.0972 9.34535L21.1613 9.74679C21.1747 9.83114 21.1877 9.91554 21.2002 10H21.5362C23.0086 10 24.0209 11.4798 23.4872 12.8521L22.2378 16.065C21.8498 17.0626 21.1989 17.9301 20.3613 18.5795ZM19.6159 9.58178L19.68 9.98322C19.6809 9.98881 19.6818 9.99441 19.6827 10H10.3704C9.23472 10 8.21584 10.6981 7.80586 11.7573L5.47402 17.7812L5.40565 17.7763C4.89217 17.7396 4.46865 17.36 4.37612 16.8536C3.96649 14.6116 3.89636 12.3208 4.16809 10.058L4.44057 7.78888C4.51176 7.19611 5.01464 6.75 5.61167 6.75H7.90323C8.34328 6.75 8.7 7.10672 8.7 7.54677C8.7 8.13183 9.17429 8.60612 9.75936 8.60612H18.4722C19.0414 8.60612 19.5262 9.0197 19.6159 9.58178ZM7.03918 17.8931C10.3822 18.1266 13.7376 18.1238 17.0804 17.8846L18.7182 17.7674L18.9128 17.7492L18.9114 17.7468C19.792 17.25 20.4733 16.4636 20.8398 15.5213L22.0892 12.3084C22.2405 11.9195 21.9536 11.5 21.5362 11.5H10.3704C9.8542 11.5 9.39107 11.8173 9.20471 12.2988L7.03918 17.8931Z" fill="white"/>
+                    </svg>
+                    Your Courses
+                </li></a>
+              <a href="/dashboard/upload">
+                <li style='display: flex; column-gap: .5rem; align-items: center;'>
+                {% comment %} <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/upload.svg' %}'> {% endcomment %}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.7379 16.6273C9.96427 16.6273 9.31895 16.036 9.2514 15.2654C9.11015 13.6541 9.07441 12.0356 9.14427 10.4203C9.05994 10.4147 8.97563 10.4088 8.89133 10.4026L7.40178 10.2941C6.44973 10.2247 5.91752 9.16309 6.43151 8.35871C7.5277 6.6432 9.53693 4.72314 11.1904 3.53541C11.6742 3.18786 12.3258 3.18786 12.8097 3.53541C14.4631 4.72314 16.4723 6.64319 17.5685 8.35871C18.0825 9.16309 17.5503 10.2247 16.5983 10.2941L15.1087 10.4026C15.0244 10.4088 14.9401 10.4147 14.8558 10.4203C14.9256 12.0356 14.8899 13.6541 14.7486 15.2654C14.6811 16.036 14.0358 16.6273 13.2622 16.6273H10.7379ZM10.6815 9.76253C10.5678 11.5498 10.589 13.3431 10.745 15.1273H13.255C13.411 13.3431 13.4323 11.5498 13.3186 9.76253C13.3058 9.56216 13.3739 9.36505 13.5077 9.21531C13.6414 9.06556 13.8296 8.9757 14.0301 8.96582C14.3535 8.94989 14.6767 8.93015 14.9997 8.90661L16.0815 8.82775C15.1219 7.41445 13.9204 6.1802 12.5313 5.18235L12 4.80071L11.4687 5.18235C10.0796 6.1802 8.87813 7.41446 7.91858 8.82775L9.00038 8.90661C9.32337 8.93015 9.64656 8.94989 9.9699 8.96582C10.1704 8.9757 10.3586 9.06556 10.4924 9.21531C10.6261 9.36505 10.6942 9.56216 10.6815 9.76253Z" fill="white"/>
+                    <path d="M5.75 17C5.75 16.5858 5.41421 16.25 5 16.25C4.58579 16.25 4.25 16.5858 4.25 17V19C4.25 19.9665 5.0335 20.75 6 20.75H18C18.9665 20.75 19.75 19.9665 19.75 19V17C19.75 16.5858 19.4142 16.25 19 16.25C18.5858 16.25 18.25 16.5858 18.25 17V19C18.25 19.1381 18.1381 19.25 18 19.25H6C5.86193 19.25 5.75 19.1381 5.75 19V17Z" fill="white"/>
+                </svg>
+                Upload Course
+                </li></a>
+              {% comment %} <a href="/dashboard/purchases"><li>Purchase History</li></a> {% endcomment %}
+              <a href="/dashboard/profile">
+                <li style='display: flex; column-gap: .5rem; align-items: center;'>
+                    {% comment %} <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/user.svg' %}'> {% endcomment %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.75 7.5C7.75 5.15279 9.65279 3.25 12 3.25C14.3472 3.25 16.25 5.15279 16.25 7.5C16.25 9.84721 14.3472 11.75 12 11.75C9.65279 11.75 7.75 9.84721 7.75 7.5ZM12 4.75C10.4812 4.75 9.25 5.98122 9.25 7.5C9.25 9.01878 10.4812 10.25 12 10.25C13.5188 10.25 14.75 9.01878 14.75 7.5C14.75 5.98122 13.5188 4.75 12 4.75Z" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 14.75C6.75736 14.75 5.75 15.7574 5.75 17V18.1883C5.75 18.2064 5.76311 18.2218 5.78097 18.2247C9.89972 18.8972 14.1003 18.8972 18.219 18.2247C18.2369 18.2218 18.25 18.2064 18.25 18.1883V17C18.25 15.7574 17.2426 14.75 16 14.75H15.6591C15.6328 14.75 15.6066 14.7542 15.5815 14.7623L14.716 15.045C12.9512 15.6212 11.0488 15.6212 9.28398 15.045L8.41847 14.7623C8.39342 14.7542 8.36722 14.75 8.34087 14.75H8ZM4.25 17C4.25 14.9289 5.92893 13.25 8 13.25H8.34087C8.52536 13.25 8.70869 13.2792 8.88407 13.3364L9.74959 13.6191C11.2119 14.0965 12.7881 14.0965 14.2504 13.6191L15.1159 13.3364C15.2913 13.2792 15.4746 13.25 15.6591 13.25H16C18.0711 13.25 19.75 14.9289 19.75 17V18.1883C19.75 18.9415 19.2041 19.5837 18.4607 19.7051C14.1819 20.4037 9.8181 20.4037 5.53927 19.7051C4.79588 19.5837 4.25 18.9415 4.25 18.1883V17Z" fill="white"/>
+                    </svg>
+                    Account
+                </li></a>
+            </ul>
+          </div>
+          <div class="profile-main">
+            <div class='sidebar-toggle'>
+                <div class="centered">
+                    {% comment %} <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/arrow-right.svg' %}'> {% endcomment %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.4697 8.53033C13.1768 8.23744 13.1768 7.76256 13.4697 7.46967C13.7626 7.17678 14.2374 7.17678 14.5303 7.46967L18.5303 11.4697C18.8232 11.7626 18.8232 12.2374 18.5303 12.5303L14.5303 16.5303C14.2374 16.8232 13.7626 16.8232 13.4697 16.5303C13.1768 16.2374 13.1768 15.7626 13.4697 15.4697L16.1893 12.75H6.5C6.08579 12.75 5.75 12.4142 5.75 12C5.75 11.5858 6.08579 11.25 6.5 11.25H16.1893L13.4697 8.53033Z" fill="white"/>
+                    </svg>                        
+                  </div>
+            </div>
+            {% block content %}{% endblock content %}
+          </div>
+        </div>
+      </main>
+      
+
+    <a href='https://github.com/ashish-makes' target='_blank'><div class='ashish-credits'>
+        <img class="icons" style='height: 1.5rem; width: 1.5rem; cursor: pointer;' src='{% static 'img/heart.svg' %}'>
+        <span style="margin-top: .1rem;" class='text'>A project by <span class='name' style='font-weight: 500;'>ashish<span></span>
+    </div></a>
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'dashboard-base.html' %}
+
+{% block title %}Edit {{course.title}}{% endblock title %}
+
+{% block content %}
+<h1>Edit Course</h1>
+<form class='course-edit' method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+</form>
+
+<style>
+    .course-edit {
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.03);
+        padding: 2rem;
+    }
+    label {
+        margin-bottom: .5rem;
+        display: block;
+    }
+    .course-edit p {
+        margin: 1rem 0;
+    }
+    input {
+        width: 100%%;
+    }
+    .course-edit a{
+        margin-bottom: 1rem;
+    }
+</style>
+
+{% endblock %}

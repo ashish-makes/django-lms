@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% load account socialaccount %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+
+<section class='signup'>
+  <div class='container signup-content'>
+    <div class='signup-container'>
+      <div class='signup-grid'>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img style = "object-fit: cover; border-radius: 4px;" src='{% static 'img/signup-img.webp' %}' width="100%" height="100%">
+        </div>
+        <div>
+          <h1>Sign up</h1>
+          <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button style='width: 100%' type="submit">Sign Up</button>
+          </form>
+          <a style='margin-top: 1rem;' class="login-via-btn" href="{% provider_login_url 'google' %}">Login via Google</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}{{ course.title }}{% endblock title %}
+
+{% block content %}
+
+<section class="">
+    {% comment %} <h1>{{ course.title }}</h1>
+<p>{{ course.description }}</p>
+<img src="{{ course.thumbnail.url }}" alt="{{ course.title }} thumbnail">
+<video controls>
+  <source src="{{ course.featured_video.url }}" type="{{ course.featured_video.mime_type }}">
+  Your browser does not support the video tag.
+</video>
+<video controls>
+  <source src="{{ course.lesson_video.url }}" type="{{ course.lesson_video.mime_type }}">
+  Your browser does not support the video tag.
+</video>
+
+<p>{{course.level}}</p>
+
+<h2>Course Requirements:</h2>
+<ul>
+  {% for requirement in course.get_requirements_list %}
+    <li>{{ requirement }}</li>
+  {% endfor %}
+</ul>
+<h2>Course Content:</h2>
+<ul>
+  {% for item in course.get_content_list %}
+    <li>{{ item }}</li>
+  {% endfor %}
+</ul> {% endcomment %}
+
+<div class='course-page'>
+  <div class='container'>
+    <div class='course-grid'>
+      <div class='course-main'>
+        <h1 style='font-size: 2rem;'>{{ course.title }}</h1>
+        <div>
+          <p>{{ course.description|slice:":80" }}</p>
+        </div>
+        <div class='course-meta'>
+          {% if course.instructor.socialaccount_set.all %}
+  {% with socialaccount=course.instructor.socialaccount_set.all|first %}
+    {% if socialaccount.get_avatar_url %}
+      <img src="{{ socialaccount.get_avatar_url }}" alt="Profile Image">
+    {% else %}
+      <img src="https://api.dicebear.com/5.x/shapes/svg?seed={{course.instructor}}" alt="Default Profile Image">
+    {% endif %}
+  {% endwith %}
+{% else %}
+  <img src="https://api.dicebear.com/5.x/shapes/svg?seed={{course.instructor}}" alt="Default Profile Image">
+{% endif %}
+
+          <p>
+            <span style='font-weight: 500;'>
+              Instructor
+            </span>
+            <span>
+              {{course.instructor}}
+            </span>
+          </p>
+          <p>
+            <span style='font-weight: 500;'>
+              Category
+            </span>
+            <span>
+              {{course.category}}
+            </span>
+          </p>
+          <p>
+            <span style='font-weight: 500;'>
+              Uploaded on
+            </span>
+            <span>
+              {{course.created_at|date:"F d, Y"}}
+            </span>
+          </p>
+        </div>
+        <div style='margin-top: 2rem;'>
+          <h2>Course Overview</h2>
+          <p style='margin: 1rem 0'>{{course.description}}</p>
+        </div>
+        {% comment %} <div>
+          <img style='border-radius: 4px' src="{{ course.thumbnail.url }}" alt="{{ course.title }} thumbnail">
+        </div> {% endcomment %}
+        <div style=''>
+          <h2>What will you learn?</h2>
+          <ul style='list-style: none; margin-top: 1rem;'>
+            {% for item in course.get_content_list %}
+            <li style='display: flex; column-gap: 1rem; margin: .6rem 0;'>
+              {% comment %} <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/check.svg' %}'> {% endcomment %}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.0303 7.96967C18.3232 8.26256 18.3232 8.73744 18.0303 9.03033L11.0303 16.0303C10.7374 16.3232 10.2626 16.3232 9.96967 16.0303L5.96967 12.0303C5.67678 11.7374 5.67678 11.2626 5.96967 10.9697C6.26256 10.6768 6.73744 10.6768 7.03033 10.9697L10.5 14.4393L16.9697 7.96967C17.2626 7.67678 17.7374 7.67678 18.0303 7.96967Z" fill="black"/>
+              </svg>
+              {{ item }}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div style=''>
+          <h2>Requirements</h2>
+          <ul style='list-style: none; margin-top: 1rem;'>
+            {% for requirement in course.get_requirements_list %}
+              <li style='display: flex; column-gap: 1rem; margin: .6rem 0;'>
+                {% comment %} <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/arrow-right-black.svg' %}'> {% endcomment %}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.4697 8.53033C13.1768 8.23744 13.1768 7.76256 13.4697 7.46967C13.7626 7.17678 14.2374 7.17678 14.5303 7.46967L18.5303 11.4697C18.8232 11.7626 18.8232 12.2374 18.5303 12.5303L14.5303 16.5303C14.2374 16.8232 13.7626 16.8232 13.4697 16.5303C13.1768 16.2374 13.1768 15.7626 13.4697 15.4697L16.1893 12.75H6.5C6.08579 12.75 5.75 12.4142 5.75 12C5.75 11.5858 6.08579 11.25 6.5 11.25H16.1893L13.4697 8.53033Z" fill="black"/>
+                </svg>
+                {{ requirement }}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class='course-unlocked'>
+          {% if enrolled %}
+          <h2 id='start-learning'>Start Learning</h2>
+          <div class='access-course'>
+            <video controls>
+              <source src="{{ course.lesson_video.url }}" type="{{ course.lesson_video.mime_type }}">
+              Your browser does not support the video tag.
+            </video>
+            <p style='margin-top: 1rem; font-weight: 600;'>{{course.lesson_title}}</p>
+          </div>
+          {% else %}
+          <h2>Unlock this course</h2>
+         <div class='course-lock'>
+          {% comment %} <img style='height: 5rem; width: 5rem;' src='{% static 'img/lock.svg' %}'> {% endcomment %}
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.5 16C10.5 15.1716 11.1716 14.5 12 14.5C12.8284 14.5 13.5 15.1716 13.5 16C13.5 16.8284 12.8284 17.5 12 17.5C11.1716 17.5 10.5 16.8284 10.5 16Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.62165 10.5971L7.30621 7.75816C7.26577 7.39418 7.26577 7.02684 7.30621 6.66286L7.32898 6.45796C7.57046 4.28457 9.27907 2.56492 11.4509 2.30941C11.8157 2.26649 12.1843 2.26649 12.5491 2.30941C14.7209 2.56492 16.4295 4.28458 16.671 6.45797L16.6937 6.66286C16.7342 7.02684 16.7342 7.39418 16.6937 7.75815L16.3783 10.5971L17.0649 10.6519C18.1476 10.7384 19.0317 11.5523 19.2073 12.6242C19.5733 14.8598 19.5733 17.1401 19.2073 19.3758C19.0317 20.4477 18.1476 21.2616 17.0649 21.348L15.5688 21.4675C13.1934 21.6571 10.8067 21.6571 8.43128 21.4675L6.93515 21.348C5.85242 21.2616 4.96832 20.4477 4.7928 19.3758C4.42673 17.1401 4.42673 14.8598 4.7928 12.6242C4.96832 11.5523 5.85242 10.7384 6.93515 10.6519L7.62165 10.5971ZM11.6261 3.79914C11.8745 3.76992 12.1255 3.76992 12.3738 3.79914C13.8525 3.97309 15.0157 5.1439 15.1802 6.62361L15.2029 6.82851C15.2311 7.08239 15.2311 7.33862 15.2029 7.59251L14.8818 10.483C12.9626 10.3594 11.0374 10.3594 9.1182 10.483L8.79704 7.59251C8.76883 7.33862 8.76883 7.08239 8.79704 6.82851L8.8198 6.62361C8.98422 5.1439 10.1475 3.97309 11.6261 3.79914ZM15.4494 12.0277C13.1535 11.8445 10.8466 11.8445 8.55065 12.0277L7.05452 12.1472C6.65959 12.1787 6.33711 12.4756 6.27309 12.8666C5.9333 14.9417 5.9333 17.0583 6.27309 19.1334C6.33711 19.5244 6.65959 19.8213 7.05452 19.8528L8.55065 19.9722C10.8466 20.1555 13.1535 20.1555 15.4494 19.9722L16.9455 19.8528C17.3405 19.8213 17.6629 19.5244 17.727 19.1334C18.0668 17.0583 18.0668 14.9417 17.727 12.8666C17.6629 12.4756 17.3405 12.1787 16.9455 12.1472L15.4494 12.0277Z" fill="black"/>
+          </svg>
+          <p>Buy this course to unlock.</p>
+        </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class='course-details'>
+        <div class='details'>
+          <div>
+          <video controls controlsList="nodownload" poster='{{course.thumbnail.url}}'>
+            <source src="{{ course.featured_video.url }}" type="{{ course.featured_video.mime_type }}">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div style='display: flex; justify-content: space-between; align-items: center;'>
+        <div style='display: inline-flex; gap: .8rem; align-items: center;'>
+          <p class='course-price'>${{course.price}}</p>
+          {% comment %} <p class=''><del>{{course.price}}</del></p> {% endcomment %}
+        </div>
+        <div>
+          <p style='background-color: #8710d8; padding: .3rem 1rem; border-radius: 4px; color: #fff;' class=''>{{course.discount}}%</p>
+        </div>
+      </div>
+      {% if enrolled %}
+      <a class='btn' href="#start-learning" style='display: block; text-align: center; width: 100%'>Access Course</a>
+      {% else %}
+      {% if user.is_authenticated %}
+      <form method="post" action="{% url 'course_details' instructor=course.instructor.username slug=course.slug %}">
+      {% csrf_token %}
+      <button type="submit" style='width: 100%'>Enroll in this Course</button>
+      </form>
+      {% else %}
+      <p style='font-weight: 500'> Please <a style='color: #8710d8' href="/accounts/login">login</a> to enroll in this course.</p>
+      {% endif %}
+      {% endif %}
+         
+      <div>
+        <ul>
+          <li>
+            <span style='display: inline-flex; column-gap: .5rem; align-items: center;'>
+              {% comment %} <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/clock.svg' %}'> {% endcomment %}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.75C7.99594 5.75 4.75 8.99594 4.75 13C4.75 17.0041 7.99594 20.25 12 20.25C16.0041 20.25 19.25 17.0041 19.25 13C19.25 8.99594 16.0041 5.75 12 5.75ZM3.25 13C3.25 8.16751 7.16751 4.25 12 4.25C16.8325 4.25 20.75 8.16751 20.75 13C20.75 17.8325 16.8325 21.75 12 21.75C7.16751 21.75 3.25 17.8325 3.25 13Z" fill="black"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 7.25C12.4142 7.25 12.75 7.58579 12.75 8V12.5843L15.3975 14.239C15.7488 14.4585 15.8555 14.9212 15.636 15.2725C15.4165 15.6238 14.9538 15.7305 14.6025 15.511L11.6025 13.636C11.3832 13.4989 11.25 13.2586 11.25 13V8C11.25 7.58579 11.5858 7.25 12 7.25Z" fill="black"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.53033 3.46967C6.82322 3.76256 6.82322 4.23744 6.53033 4.53033L4.03033 7.03033C3.73744 7.32322 3.26256 7.32322 2.96967 7.03033C2.67678 6.73744 2.67678 6.26256 2.96967 5.96967L5.46967 3.46967C5.76256 3.17678 6.23744 3.17678 6.53033 3.46967Z" fill="black"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4697 3.46967C17.1768 3.76256 17.1768 4.23744 17.4697 4.53033L19.9697 7.03033C20.2626 7.32322 20.7374 7.32322 21.0303 7.03033C21.3232 6.73744 21.3232 6.26256 21.0303 5.96967L18.5303 3.46967C18.2374 3.17678 17.7626 3.17678 17.4697 3.46967Z" fill="black"/>
+              </svg>
+              Duration
+            </span>
+            <span>{{course.duration}} Hours</span>
+          </li>
+          <li>
+            <span style='display: inline-flex; column-gap: .5rem; align-items: center;'>
+              {% comment %} <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/level.svg' %}'> {% endcomment %}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.50914 8.82899C6.66268 8.97095 6.74999 9.17057 6.74999 9.37969L6.74999 14.6045C6.74999 14.814 6.66236 15.0139 6.50831 15.1559C6.35426 15.2979 6.14784 15.369 5.93903 15.352L5.70349 15.3326C5.2657 15.2964 4.90238 14.98 4.8062 14.5516C4.42775 12.8662 4.42761 11.1172 4.80608 9.43168C4.90255 9.00205 5.26764 8.68537 5.70659 8.65057M6.50914 8.82899C6.35559 8.68703 5.91506 8.6342 5.70659 8.65057Z" fill="black"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.75 14V10C20.75 9.86193 20.6381 9.75 20.5 9.75H19.1C18.6858 9.75 18.35 9.41421 18.35 9V8.18967C18.35 7.70183 17.9747 7.29611 17.4883 7.25819L16.2198 7.15928C12.7452 6.88835 9.25478 6.88835 5.78017 7.15928L4.43257 7.26435C3.90973 7.30512 3.48188 7.69677 3.39518 8.21398C2.97496 10.7205 2.97496 13.2795 3.39518 15.786C3.48188 16.3032 3.90973 16.6949 4.43257 16.7356L5.78017 16.8407C9.25478 17.1116 12.7452 17.1116 16.2198 16.8407L17.4883 16.7418C17.9747 16.7039 18.35 16.2982 18.35 15.8103V15C18.35 14.5858 18.6858 14.25 19.1 14.25H20.5C20.6381 14.25 20.75 14.1381 20.75 14ZM22.25 10V14C22.25 14.9665 21.4665 15.75 20.5 15.75H19.85V15.8103C19.85 17.0814 18.8721 18.1385 17.6049 18.2373L16.3364 18.3362C12.7842 18.6132 9.2158 18.6132 5.66357 18.3362L4.31596 18.2311C3.10632 18.1368 2.11643 17.2306 1.91582 16.034C1.46808 13.3633 1.46808 10.6367 1.91582 7.96597C2.11643 6.76935 3.10632 5.86321 4.31597 5.76889L5.66357 5.66382C9.21579 5.38684 12.7842 5.38684 16.3364 5.66382L17.6049 5.76273C18.8721 5.86153 19.85 6.91863 19.85 8.18967V8.25H20.5C21.4665 8.25 22.25 9.0335 22.25 10Z" fill="black"/>
+              </svg>
+              Level
+            </span>
+            <span>{{course.level}}</span>
+          </li>
+          <li>
+            <span style='display: inline-flex; column-gap: .5rem; align-items: center;'>
+              {% comment %} <img style='height: 1.5rem; width: 1.5rem;' src='{% static 'img/update.svg' %}'> {% endcomment %}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.86461 6.88236C8.17813 5.56432 9.99326 4.75 12 4.75C16.0041 4.75 19.25 7.99594 19.25 12C19.25 16.0041 16.0041 19.25 12 19.25C7.99594 19.25 4.75 16.0041 4.75 12C4.75 11.5858 4.41421 11.25 4 11.25C3.58579 11.25 3.25 11.5858 3.25 12C3.25 16.8325 7.16751 20.75 12 20.75C16.8325 20.75 20.75 16.8325 20.75 12C20.75 7.16751 16.8325 3.25 12 3.25C9.57851 3.25 7.38558 4.23462 5.80213 5.82352C5.77668 5.84906 5.75345 5.87597 5.73245 5.90401L4.47488 4.64645C4.33769 4.50926 4.13353 4.46382 3.95111 4.52986C3.76869 4.59591 3.64094 4.76152 3.62338 4.95473L3.26982 8.84382C3.25639 8.9916 3.30929 9.13771 3.41422 9.24264C3.51914 9.34757 3.66526 9.40047 3.81304 9.38703L7.70213 9.03348C7.89534 9.01591 8.06095 8.88817 8.12699 8.70575C8.19304 8.52332 8.1476 8.31916 8.01041 8.18198L6.7823 6.95386C6.81101 6.93235 6.83854 6.90852 6.86461 6.88236Z" fill="black"/>
+                <path d="M12.75 7C12.75 6.58579 12.4142 6.25 12 6.25C11.5858 6.25 11.25 6.58579 11.25 7V12C11.25 12.2586 11.3832 12.4989 11.6025 12.636L14.6025 14.511C14.9538 14.7305 15.4165 14.6238 15.636 14.2725C15.8555 13.9212 15.7488 13.4585 15.3975 13.239L12.75 11.5843V7Z" fill="black"/>
+              </svg>
+              Last Update
+            </span>
+            <span>{{course.updated_at|date:"F d, Y"}}</span>
+          </li>
+        </ul>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>
+
+  <div class="container home-featured-courses-content">
+      <h2>Similar Courses</h2>
+        {% if category_courses %}
+        <div class="courses">
+          {% for course in category_courses %}
+  <div class="course">
+  <div class="course-thumbnail">
+      <a href="{% url 'course_details' instructor=course.instructor slug=course.slug %}">
+          <img src='{{course.thumbnail.url}}'>
+      </a>
+  </div>
+  <div class="course-details">
+      <a href="{% url 'course_details' instructor=course.instructor slug=course.slug %}"><h3>{{ course.title|slice:":80" }}</h3></a>
+      <p style="display: inline-flex; column-gap: 1rem; justify-content: center; align-items: center;" class="instructor">
+          <img class="instructor-img" src="https://api.dicebear.com/5.x/shapes/svg?seed={{ course.instructor }}">
+          Instructor: {{ course.instructor }}
+      </p>
+      <p class="course-desc">{{ course.description|slice:":100" }}</p>
+      <p class="course-lvl-time">
+          {{ course.level }} &middot; {{ course.duration }} Hours
+      </p>
+      <a href="{% url 'course_details' instructor=course.instructor slug=course.slug %}" class="btn enroll-btn">Enroll now</a>
+  </div>
+  </div>
+  {% endfor %}
+        {% else %}
+          <div class="col-md-12">
+            <p style='margin: 2rem 0;'>No courses found in this category.</p>
+          </div>
+        {% endif %}
+      </div>
+
+
+{% endblock content %}
