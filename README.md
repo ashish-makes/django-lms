@@ -60,6 +60,15 @@ python manage.py runserver
 
 ![skillmate-upload-course](https://user-images.githubusercontent.com/106135144/227761259-bc27aa5f-e06e-482d-8986-ecdf3ac50bf7.png)
 
+## Contributing
+Contributions are welcome and encouraged! If you'd like to contribute to the project, please follow these steps:
+
+1. Fork the repository
+2. Create a new branch
+3. Make your changes and commit them
+4. Push your changes to your forked repository
+5. Create a pull request
+
 ## Conclusion
 Skillmate is an online learning platform that allows instructors to create and sell courses to students created using Django.
 
